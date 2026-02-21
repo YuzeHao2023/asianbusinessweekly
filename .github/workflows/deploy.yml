@@ -20,8 +20,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (disable optional native deps)
+        env:
+          NPM_CONFIG_OPTIONAL: 'false'
+        run: npm ci --no-optional
 
       - name: Build
         run: npm run build
